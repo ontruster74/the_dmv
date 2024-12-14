@@ -18,10 +18,13 @@ class Facility
     @registered_vehicles << vehicle 
     if vehicle.age >= 25
       @collected_fees += 25
+      vehicle.plate_type = :antique
     elsif vehicle.engine == :ev
       @collected_fees += 200
+      vehicle.plate_type = :ev
     else
       @collected_fees += 100
+      vehicle.plate_type = :regular
     end
   end
 
