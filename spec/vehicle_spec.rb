@@ -33,4 +33,13 @@ RSpec.describe Vehicle do
       expect(@camaro.electric_vehicle?).to eq(false)
     end
   end
+
+  describe '#plate_type' do
+    it 'starts with a plate_type property that defaults to nil' do
+      expect(@cruz.plate_type).to eq(nil)
+      expect(@bolt.plate_type).to eq(nil)
+      expect(@camaro.plate_type).to eq(nil)
+    end
+  end
+
 end
