@@ -2,9 +2,30 @@ class Facility
   attr_reader :name, :address, :phone, :services, :collected_fees, :registered_vehicles
 
   def initialize(facility_details)
-    @name = facility_details[:name]
-    @address = facility_details[:address]
-    @phone = facility_details[:phone]
+    if facility_details.keys.include?(:dmv_office)
+      @name = facility_details[:dmv_office]
+    elsif facility_details.keys.include?(:office_name)
+      @name = [facility_details[:office_name], facility_details[:office_type]].join(" ")
+    else
+      @name = facility_details[:name]
+    end
+
+    if facility_details.keys.include?(:address_li)
+      @address = [facility_details[:address_li], facility_details[:address__1], facility_details[:city], facility_details[:state], facility_details[:zip]].join(" ")
+    elsif facility_details.keys.include?(:street_address_line_1)
+      @address = [facility_details[:street_address_line_1], facility_details[:city], facility_details[:state], facility_details[:zip_code]].join(" ")
+    elsif facility_details.keys.include?(:address1)
+      @address = [facility_details[:address1], facility_details[:city], facility_details[:state], facility_details[:zipcode]].join(" ")
+    else
+      @address = facility_details[:address]
+    end
+
+    if facility_details.keys.include?(:public_phone_number)
+      @phone = facility_details[:public_phone_number]
+    else
+      @phone = facility_details[:phone]
+    end
+    
     @services = []
     @registered_vehicles = []
     @collected_fees = 0
