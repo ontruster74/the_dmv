@@ -27,9 +27,11 @@ RSpec.describe Dmv do
     it 'can return list of facilities offering a specified Service' do
       @facility_1.add_service('New Drivers License')
       @facility_1.add_service('Renew Drivers License')
+
       @facility_2.add_service('New Drivers License')
       @facility_2.add_service('Road Test')
       @facility_2.add_service('Written Test')
+      
       @facility_3.add_service('New Drivers License')
       @facility_3.add_service('Road Test')
 
